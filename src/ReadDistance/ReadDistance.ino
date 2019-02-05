@@ -37,17 +37,17 @@ void setup(void)
 
 void loop(void)
 {
-
+  distanceSensor1.startRanging();
   int distance1 = distanceSensor1.getDistance(); //Get the result of the measurement from the sensor
-
+  distanceSensor1.stopRanging();
   Serial.print("S1");
   Serial.print(distance1);
   Serial.print("E");
 
 
-
+  distanceSensor2.startRanging();
   int distance2 = distanceSensor2.getDistance(); //Get the result of the measurement from the sensor
-
+  distanceSensor2.stopRanging();
 
   Serial.print("S2");
   Serial.print(distance2);
