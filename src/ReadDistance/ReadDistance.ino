@@ -27,22 +27,25 @@ void setup(void)
 
 void loop(void)
 {
+  Serial.print("S1");
   distanceSensor1.sensorOn();
   distanceSensor1.init();
-  int distance1 = distanceSensor1.getDistance(); //Get the result of the measurement from the sensor
+  distanceSensor1.setDistanceModeLong();
+  distanceSensor1.setIntermeasurementPeriod(100);
+
+  Serial.print(distanceSensor1.getDistance()); //Get the result of the measurement from the sensor
   distanceSensor1.sensorOff();
-  Serial.print("S1");
-  Serial.print(distance1);
-  Serial.print("E");
+ 
+  Serial.print("ES2");
 
 
   distanceSensor2.sensorOn();
   distanceSensor2.init();
-  int distance2 = distanceSensor2.getDistance(); //Get the result of the measurement from the sensor
+  distanceSensor2.setDistanceModeLong();
+  distanceSensor2.setIntermeasurementPeriod(100);
+  Serial.print(distanceSensor2.getDistance()); //Get the result of the measurement from the sensor
   distanceSensor2.sensorOff();
 
-  Serial.print("S2");
-  Serial.print(distance2);
   Serial.print("E");
 
 }
