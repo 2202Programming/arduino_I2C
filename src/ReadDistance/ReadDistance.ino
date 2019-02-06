@@ -22,7 +22,7 @@ void setup(void)
 {
   Wire.begin();
 
-  Serial.begin(115200);
+  Serial.begin(9600);
   //Turn off Sensor 1 so we can reprogram address on #2 
   distanceSensor1.sensorOff();
   
@@ -33,27 +33,44 @@ void setup(void)
 
   distanceSensor1.sensorOn();
   distanceSensor1.init();
+
+  if(distanceSensor1.checkBootState()) Serial.println("Sensor one booted.");
+  if(distanceSensor2.checkBootState()) Serial.println("Sensor two booted.");
+  Serial.print("Sensor 1 address = ");
+  Serial.println(distanceSensor1.getI2CAddress());
+  Serial.print("Sensor 2 address = ");
+  Serial.println(distanceSensor2.getI2CAddress());
+
+  distanceSensor1.startRanging();
+  distanceSensor2.startRanging();
+
+  while(!distanceSensor1.checkForDataReady()) distanceSensor1.checkForDataReady();
+  Serial.print("Distance1: ");
+  Serial.println(distanceSensor1.getDistance());
+  delay(10);
+  while(!distanceSensor2.checkForDataReady()) distanceSensor2.checkForDataReady();
+  Serial.print("Distance2: ");
+  Serial.println(distanceSensor2.getDistance());
+  
   }
 
 void loop(void)
 {
-  
-  Serial.print("S1");
+  /*
+  Serial.print("S1:");
   
   distanceSensor1.startRanging();
   Serial.print(distanceSensor1.getDistance()); //Get the result of the measurement from the sensor
   distanceSensor1.stopRanging();
 
-  Serial.print("ES2");
+  Serial.println(",");
+  Serial.print("S2:");
 
   
-  distanceSensor2.startRanging();
-  Serial.print(distanceSensor2.getDistance()); //Get the result of the measurement from the sensor
-  distanceSensor2.stopRanging();
-  Serial.print("E");
-
-
-
-
+ // distanceSensor2.startRanging();
+ Serial.print(distanceSensor2.getDistance()); //Get the result of the measurement from the sensor
+ // distanceSensor2.stopRanging();
+  Serial.println(".");
+*/
 }
 
