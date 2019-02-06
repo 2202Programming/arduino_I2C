@@ -29,34 +29,31 @@ void setup(void)
   distanceSensor2.sensorOn();
   distanceSensor2.init();
   distanceSensor2.setI2CAddress(TOF_ADDRESS_TWO);
-  distanceSensor2.setDistanceModeLong();
-  distanceSensor2.setIntermeasurementPeriod(100);
- 
+  distanceSensor2.stopRanging();
 
   distanceSensor1.sensorOn();
   distanceSensor1.init();
-  distanceSensor1.setDistanceModeLong();
-  distanceSensor1.setIntermeasurementPeriod(100);
-  
-}
+  }
 
 void loop(void)
 {
-  //Serial.print("S1");
+  
+  Serial.print("S1");
+  
   distanceSensor1.startRanging();
-  Serial.println(distanceSensor1.getDistance()); //Get the result of the measurement from the sensor
+  Serial.print(distanceSensor1.getDistance()); //Get the result of the measurement from the sensor
   distanceSensor1.stopRanging();
 
-  //Serial.print("ES2");
+  Serial.print("ES2");
 
   
   distanceSensor2.startRanging();
-  Serial.println(distanceSensor2.getDistance()); //Get the result of the measurement from the sensor
+  Serial.print(distanceSensor2.getDistance()); //Get the result of the measurement from the sensor
   distanceSensor2.stopRanging();
-  //Serial.print("E");
+  Serial.print("E");
 
 
-  
+
 
 }
 
